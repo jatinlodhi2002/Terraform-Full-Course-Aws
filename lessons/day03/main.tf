@@ -1,24 +1,7 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "~> 6.0"
-    }
-  }
+module "s3_bucket" {
+  source = "./s3"
+
+  bucket_name = var.bucket_name
+  tag_name    = var.tag_name
+  environment = var.environment
 }
-
-provider "aws" {
-  # Configuration options
-    region = "us-east-1"
-}
-
-# Create a S3 bucket
-resource "aws_s3_bucket" "tf_test_baivab_bucket" {
-  bucket = "my-tf-test-baiv-bucket-101"
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
-}
-
