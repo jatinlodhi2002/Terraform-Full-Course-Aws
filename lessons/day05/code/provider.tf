@@ -15,4 +15,5 @@ terraform {
 
 provider "aws" {
   region = "us-east-1" # Simple hardcoded region for demo
+  profile = "learn-tf"
 }
