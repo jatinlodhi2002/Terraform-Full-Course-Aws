@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "environment" {
   description = "Environment name (dev or prod)"
   type        = string
-  default     = "dev"
+  default     = "prod"
 }
 
 variable "instance_count" {

@@ -7,14 +7,14 @@
 # - Otherwise, use t2.micro
 # ==============================================================================
 
-resource "aws_instance" "conditional_example" {
-  ami           = data.aws_ami.amazon_linux.id
-  instance_type = var.environment == "prod" ? "t3.large" : "t2.micro"
+# resource "aws_instance" "conditional_example" {
+#   ami           = data.aws_ami.amazon_linux.id
+#   instance_type = var.environment == "prod" ? "t3.small" : "t3.micro"
 
-  tags = {
-    Name = "conditional-instance-${var.environment}"
-  }
-}
+#   tags = {
+#     Name = "conditional-instance-${var.environment}"
+#   }
+# }
 
 # ==============================================================================
 # EXAMPLE 2: DYNAMIC BLOCKS
@@ -62,25 +62,25 @@ resource "aws_instance" "conditional_example" {
 # - Extracts all IDs and IPs in a single expression
 # ==============================================================================
 
-# resource "aws_instance" "splat_example" {
-#   count = var.instance_count
+resource "aws_instance" "splat_example" {
+  count = var.instance_count
   
-#   ami           = data.aws_ami.amazon_linux.id
-#   instance_type = "t2.micro"
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t3.micro"
   
-#   tags = {
-#     Name = "instance-${count.index + 1}"
-#   }
-# }
+  tags = {
+    Name = "instance-${count.index + 1}"
+  }
+}
 
-# # Use splat expressions to extract values from all instances
-# locals {
-#   # Get all instance IDs in one line using [*]
-#   all_instance_ids = aws_instance.splat_example[*].id
+# Use splat expressions to extract values from all instances
+locals {
+  # Get all instance IDs in one line using [*]
+  all_instance_ids = aws_instance.splat_example[*].id
   
-#   # Get all private IPs using [*]
-#   all_private_ips = aws_instance.splat_example[*].private_ip
-# }
+  # Get all private IPs using [*]
+  all_private_ips = aws_instance.splat_example[*].private_ip
+}
 
 # ==============================================================================
 # DATA SOURCES

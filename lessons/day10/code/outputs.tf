@@ -3,15 +3,15 @@
 # ==============================================================================
 # Uncomment when testing Example 1
 
-output "conditional_instance_type" {
-  description = "Instance type selected based on environment (prod=t3.large, dev=t2.micro)"
-  value       = aws_instance.conditional_example.instance_type
-}
+# output "conditional_instance_type" {
+#   description = "Instance type selected based on environment (prod=t3.large, dev=t2.micro)"
+#   value       = aws_instance.conditional_example.instance_type
+# }
 
-output "conditional_instance_id" {
-  description = "Instance ID of the conditional example"
-  value       = aws_instance.conditional_example.id
-}
+# output "conditional_instance_id" {
+#   description = "Instance ID of the conditional example"
+#   value       = aws_instance.conditional_example.id
+# }
 
 # ==============================================================================
 # EXAMPLE 2 OUTPUT: DYNAMIC BLOCK
@@ -33,12 +33,12 @@ output "conditional_instance_id" {
 # ==============================================================================
 # Uncomment when testing Example 3
 
-# output "all_instance_ids" {
-#   description = "All instance IDs using splat expression [*]"
-#   value       = aws_instance.splat_example[*].id
-# }
+output "all_instance_ids" {
+  description = "All instance IDs using splat expression [*]"
+  value       = aws_instance.splat_example[*].id
+}
 
-# output "all_private_ips" {
-#   description = "All private IPs using splat expression [*]"
-#   value       = aws_instance.splat_example[*].private_ip
-# }
+output "all_private_ips" {
+  description = "All private IPs using splat expression [*]"
+  value       = aws_instance.splat_example[*].private_ip
+}
