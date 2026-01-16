@@ -62,25 +62,25 @@
 # Uncomment to test
 # ==============================================================================
 
-# locals {
-#   # S3 bucket names: max 63 chars, lowercase, no spaces or special chars
-#   formatted_bucket_name = replace(
-#     replace(
-#       lower(substr(var.bucket_name, 0, 63)),
-#       " ", ""
-#     ),
-#     "!", ""
-#   )
-# }
+locals {
+  # S3 bucket names: max 63 chars, lowercase, no spaces or special chars
+  formatted_bucket_name = replace(
+    replace(
+      lower(substr(var.bucket_name, 0, 63)),
+      " ", ""
+    ),
+    "!", ""
+  )
+}
 
-# resource "aws_s3_bucket" "storage" {
-#   bucket = local.formatted_bucket_name
+resource "aws_s3_bucket" "storage" {
+  bucket = local.formatted_bucket_name
 
-#   tags = {
-#     Name        = local.formatted_bucket_name
-#     Environment = var.environment
-#   }
-# }
+  tags = {
+    Name        = local.formatted_bucket_name
+    Environment = var.environment
+  }
+}
 
 # ==============================================================================
 # ASSIGNMENT 4: Security Group Port Configuration
@@ -373,3 +373,8 @@ data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {
   state = "available"
 }
+
+
+
+
+

@@ -2,15 +2,15 @@
 # ASSIGNMENT 1 OUTPUTS: Project Naming
 # ==============================================================================
 
-# output "formatted_project_name" {
-#   description = "Formatted project name (lowercase with hyphens)"
-#   value       = local.formatted_project_name
-# }
+output "formatted_project_name" {
+  description = "Formatted project name (lowercase with hyphens)"
+  value       = local.formatted_project_name
+}
 
-# output "resource_group_name" {
-#   description = "Created resource group name"
-#   value       = aws_resourcegroups_group.project.name
-# }
+output "resource_group_name" {
+  description = "Created resource group name"
+  value       = aws_resourcegroups_group.project.name
+}
 
 # ==============================================================================
 # ASSIGNMENT 2 OUTPUTS: Resource Tagging
@@ -32,20 +32,20 @@
 # ==============================================================================
 # Uncomment when testing Assignment 3
 
-# output "original_bucket_name" {
-#   description = "Original bucket name input"
-#   value       = var.bucket_name
-# }
+output "original_bucket_name" {
+  description = "Original bucket name input"
+  value       = var.bucket_name
+}
 
-# output "formatted_bucket_name" {
-#   description = "Formatted S3-compliant bucket name"
-#   value       = local.formatted_bucket_name
-# }
+output "formatted_bucket_name" {
+  description = "Formatted S3-compliant bucket name"
+  value       = local.formatted_bucket_name
+}
 
-# output "bucket_arn" {
-#   description = "ARN of created S3 bucket"
-#   value       = aws_s3_bucket.storage.arn
-# }
+output "bucket_arn" {
+  description = "ARN of created S3 bucket"
+  value       = aws_s3_bucket.storage.arn
+}
 
 # ==============================================================================
 # ASSIGNMENT 4 OUTPUTS: Security Group Ports
