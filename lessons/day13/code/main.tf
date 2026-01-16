@@ -1,12 +1,13 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
+  profile = "learn-tf"
 }
 
 # Data source to get the existing VPC
 data "aws_vpc" "shared" {
   filter {
     name   = "tag:Name"
-    values = ["shared-network-vpc"]
+    values = ["default"]
   }
 }
 
@@ -14,7 +15,7 @@ data "aws_vpc" "shared" {
 data "aws_subnet" "shared" {
   filter {
     name   = "tag:Name"
-    values = ["shared-primary-subnet"]
+    values = ["default-subnet-a"]
   }
   vpc_id = data.aws_vpc.shared.id
 }
@@ -37,9 +38,9 @@ data "aws_ami" "amazon_linux_2" {
 
 resource "aws_instance" "main" {
   ami           = data.aws_ami.amazon_linux_2.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   subnet_id     = data.aws_subnet.shared.id
-  private_ip    = "10.0.1.50"
+  # private_ip is automatically assigned by AWS from the subnet range
 
   tags = {
     Name = "day13-instance"
