@@ -62,25 +62,25 @@
 # Uncomment to test
 # ==============================================================================
 
-locals {
-  # S3 bucket names: max 63 chars, lowercase, no spaces or special chars
-  formatted_bucket_name = replace(
-    replace(
-      lower(substr(var.bucket_name, 0, 63)),
-      " ", ""
-    ),
-    "!", ""
-  )
-}
+# locals {
+#   # S3 bucket names: max 63 chars, lowercase, no spaces or special chars
+#   formatted_bucket_name = replace(
+#     replace(
+#       lower(substr(var.bucket_name, 0, 63)),
+#       " ", ""
+#     ),
+#     "!", ""
+#   )
+# }
 
-resource "aws_s3_bucket" "storage" {
-  bucket = local.formatted_bucket_name
+# resource "aws_s3_bucket" "storage" {
+#   bucket = local.formatted_bucket_name
 
-  tags = {
-    Name        = local.formatted_bucket_name
-    Environment = var.environment
-  }
-}
+#   tags = {
+#     Name        = local.formatted_bucket_name
+#     Environment = var.environment
+#   }
+# }
 
 # ==============================================================================
 # ASSIGNMENT 4: Security Group Port Configuration
@@ -189,25 +189,25 @@ resource "aws_s3_bucket" "storage" {
 # - "m5.large"    -> Doesn't start with t2/t3 (fails)
 # - "t2.micro"    -> Valid (passes)
 
-# data "aws_ami" "validated_ami" {
-#   most_recent = true
-#   owners      = ["amazon"]
+data "aws_ami" "validated_ami" {
+  most_recent = true
+  owners      = ["amazon"]
 
-#   filter {
-#     name   = "name"
-#     values = ["amzn2-ami-hvm-*-x86_64-gp2"]
-#   }
-# }
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
 
-# resource "aws_instance" "validated_instance" {
-#   ami           = data.aws_ami.validated_ami.id
-#   instance_type = var.instance_type
+resource "aws_instance" "validated_instance" {
+  ami           = data.aws_ami.validated_ami.id
+  instance_type = var.instance_type
 
-#   tags = {
-#     Name = "validated-instance"
-#     Type = var.instance_type
-#   }
-# }
+  tags = {
+    Name = "validated-instance"
+    Type = var.instance_type
+  }
+}
 
 # ==============================================================================
 # ASSIGNMENT 7: Backup Configuration

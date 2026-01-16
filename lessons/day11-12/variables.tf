@@ -67,7 +67,7 @@ variable "instance_sizes" {
   type = map(string)
   default = {
     dev     = "t2.micro"
-    staging = "t3.small"
+    staging = "t3.small" 
     prod    = "t3.large"
   }
 }
