@@ -50,12 +50,12 @@ resource "aws_s3_bucket_policy" "website" {
 
 # Upload website files to S3
 resource "aws_s3_object" "website_files" {
-  for_each = fileset("${path.module}/www", "**/*")
+  for_each = fileset("${path.module}/website", "**/*")
 
   bucket = aws_s3_bucket.website.id
   key    = each.value
-  source = "${path.module}/www/${each.value}"
-  etag   = filemd5("${path.module}/www/${each.value}")
+  source = "${path.module}/website/${each.value}"
+  etag   = filemd5("${path.module}/website/${each.value}")
   content_type = lookup({
     "html" = "text/html",
     "css"  = "text/css",
